@@ -1,0 +1,22 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using SitefinityWebApp.Nerdlings;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@{ 
+    var nerdlingViewModelList = new List<NerdlingViewModel>();
+    foreach (var item in Model.Items)
+    {
+        nerdlingViewModelList.Add(new NerdlingViewModel(item));
+    }
+}
+
+<div class="@Model.CssClass nerdling-container">
+    @foreach (var nerdling in nerdlingViewModelList)
+    {
+        <div class="nerdling-title">@nerdling.Title</div>
+        <div class="nerdling-github">@nerdling.GitHubProfile</div>
+        <img src="@nerdling.GitHubProfileImageUrl" alt="@nerdling.GitHubProfile" />
+    }
+</div>

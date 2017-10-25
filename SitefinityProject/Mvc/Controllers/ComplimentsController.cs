@@ -1,0 +1,24 @@
+﻿using SitefinityWebApp.Mvc.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Mvc;
+using Telerik.Sitefinity.Mvc;
+
+namespace SitefinityWebApp.Mvc.Controllers
+{
+    [ControllerToolboxItem(Name = "Complimentor", Title = "Complimentor", SectionName = "Complimentor")]
+    public class ComplimentsController : Controller
+    {
+        public string Compliments { get; set; }
+
+        public ActionResult Index()
+        {
+            var model = new ComplimentsModel(Compliments);
+            return View(model);
+        }
+    }
+}
