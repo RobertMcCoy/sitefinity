@@ -4,18 +4,13 @@ param (
 )
 
 function Enable-WindowsFeatures {
-	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-NetFxExtensibility 
 	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-NetFxExtensibility45
 	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-ApplicationInit
-	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-ASP
-	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-ASPNET
 	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-ASPNET45
 	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-ISAPIExtensions
 	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-ISAPIFilter
 	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-ServerSideIncludes
 	Enable-WindowsOptionalFeature -Online -All -FeatureName IIS-WebSockets
-	Enable-WindowsOptionalFeature -Online -All -FeatureName WCF-HTTP-Activation
-	Enable-WindowsOptionalFeature -Online -All -FeatureName WCF-NonHTTP-Activation
 }
 
 function Ensure-HandlerMappings([string]$appNamePath) {

@@ -1,11 +1,10 @@
 param (
-	[string]$webSiteName = "Nnerdlings",
+	[string]$webSiteName = "nerdlings",
 	[string]$webProjectName = "SitefinityProject",
 	[string]$solutionDir = (Split-Path $MyInvocation.MyCommand.Path) 
 )
 
 . "$solutionDir\iis.ps1"
-
 function main {
 	Disable-GitSSLVerification
 	Install-FeatherNodeTools
