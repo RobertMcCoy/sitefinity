@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  sitefinitywebapp.api:
+    image: sitefinitywebapp.api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1190:1190"

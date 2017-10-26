@@ -3,12 +3,14 @@ using Xunit;
 using SitefinityWebApp.Nerdlings;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
+using SitefinityWebApp.Models.GitHub;
 
 namespace SitefinityWebApp.Tests
 {
     public class TheNerdlingViewModel
     {
         NerdlingViewModel _viewModel;
+        GitHubProfile _fakeGitHubProfile;
 
         [Fact]
         public void HasATitle()
@@ -21,14 +23,7 @@ namespace SitefinityWebApp.Tests
         public void HasAGitHubProfile()
         {
             Arrange();
-            Assert.Equal("RobertMcCoy", _viewModel.GitHubProfile);
-        }
-
-        [Fact]
-        public void GetsTheGitHubProfileImage()
-        {
-            Arrange();
-            Assert.Equal($"http://github.com/{_viewModel.GitHubProfile}/testimage.png", _viewModel.GitHubProfileImageUrl);
+            Assert.Equal(_fakeGitHubProfile, _viewModel.GitHubProfile);
         }
 
         void Arrange()
@@ -38,20 +33,27 @@ namespace SitefinityWebApp.Tests
             nerdlingFields.Title = "Yo this be my title dawg";
             nerdlingFields.GitHubUrl = "RobertMcCoy";
             nerdling.Fields = nerdlingFields;
-            _viewModel = new TestableNerdlingViewModel(nerdling);
+            _fakeGitHubProfile = new GitHubProfile
+            {
+                Name = "testuser"
+            };
+            _viewModel = new TestableNerdlingViewModel(nerdling, _fakeGitHubProfile);
         }
 
         class TestableNerdlingViewModel : NerdlingViewModel
         {
-            public TestableNerdlingViewModel(ExpandoObject nerdling) : base(nerdling)
+            GitHubProfile _fakeGitHubProfile;
+
+            public TestableNerdlingViewModel(ExpandoObject nerdling, GitHubProfile fakeGitHubProfile) : base(nerdling)
             {
+                _fakeGitHubProfile = fakeGitHubProfile;
             }
 
-            public override string GitHubProfileImageUrl
+            public override GitHubProfile GitHubProfile
             {
                 get
                 {
-                    return $"http://github.com/{GitHubProfile}/testimage.png";
+                    return _fakeGitHubProfile;
                 }
             }
         }

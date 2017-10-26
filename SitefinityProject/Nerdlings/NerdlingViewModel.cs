@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using Newtonsoft.Json;
+using SitefinityWebApp.Models.GitHub;
 
 namespace SitefinityWebApp.Nerdlings
 {
@@ -24,24 +21,20 @@ namespace SitefinityWebApp.Nerdlings
             }
         }
 
-        public string GitHubProfile
+        public virtual GitHubProfile GitHubProfile
         {
             get
             {
-                return _nerdling.Fields?.GitHubUrl;
+                return GetGitHubProfileFromUsername();
             }
         }
 
-        public virtual string GitHubProfileImageUrl
+        GitHubProfile GetGitHubProfileFromUsername()
         {
-            get
-            {
-                WebClient request = new WebClient();
-                request.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
-                var result = request.DownloadString($"https://api.github.com/users/{GitHubProfile}");
-                var gitHubProfile = JsonConvert.DeserializeObject<GitHubProfile>(result);
-                return gitHubProfile.AvatarUrl;
-            }
+            WebClient request = new WebClient();
+            var result = request.DownloadString($"/api/GitHub/{GitHubProfile}");
+            var gitHubProfile = JsonConvert.DeserializeObject<GitHubProfile>(result);
+            return gitHubProfile;
         }
     }
 }
