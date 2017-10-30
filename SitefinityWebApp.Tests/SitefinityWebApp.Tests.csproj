@@ -17,4 +17,8 @@
     <ProjectReference Include="..\SitefinityWebApp.Models\SitefinityWebApp.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TheComplimentor\" />
+  </ItemGroup>
+
 </Project>

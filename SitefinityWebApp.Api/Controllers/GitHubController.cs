@@ -13,6 +13,8 @@ namespace SitefinityWebApp.Api.Controllers
     public class GitHubController : Controller
     {
         [HttpGet]
+        [Produces("application/json", Type = typeof(List<GitHubProfile>))]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         public IEnumerable<GitHubProfile> Get()
         {
             WebClient request = new WebClient();
@@ -23,6 +25,8 @@ namespace SitefinityWebApp.Api.Controllers
         }
 
         [HttpGet("{name}")]
+        [Produces("application/json", Type = typeof(GitHubProfile))]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         public GitHubProfile Get(string name)
         {
             WebClient request = new WebClient();
