@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "autorest --namespace=SitefinityWebApp.Api --input-file=http://localhost:1191/swagger/doc/swagger.json --output-folder=Clients.Services --csharp"
   },
   "author": "",
   "license": "ISC"

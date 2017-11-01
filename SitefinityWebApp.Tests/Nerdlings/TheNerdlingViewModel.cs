@@ -42,7 +42,7 @@ namespace SitefinityWebApp.Tests
 
         class TestableNerdlingViewModel : NerdlingViewModel
         {
-            GitHubProfile _fakeGitHubProfile;
+            readonly GitHubProfile _fakeGitHubProfile;
 
             public TestableNerdlingViewModel(ExpandoObject nerdling, GitHubProfile fakeGitHubProfile) : base(nerdling)
             {
